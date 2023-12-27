@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+   <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/boardViews/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+
+   <context:component-scan base-package="com.spring.bbiyak" />
+   <context:component-scan base-package="com.spring.boardex" />
+   
+   <!--  HandlerMapping 구현 -->
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+            <prop key="/getBoardList.do"> getBoardList </prop>
+            <prop key="/getBoard.do"> getBoard</prop>
+            <prop key="/insertBoard.do"> insertBoard</prop>
+            <prop key="/insertProcBoard.do"> insertBoardProc</prop>
+            <prop key="/loginBoard.do"> LoginBoard</prop>
+            <prop key="/loginProcBoard.do"> LoginBoardProc</prop>
+            <prop key="/mainBoard.do"> mainBoard</prop>
+            <prop key="/diaryBoard.do"> diaryBoard</prop>
+            <prop key="/diaryInsertBoard.do"> diaryInsertBoard</prop>
+            <prop key="/diaryInsertProcBoard.do"> diaryInsertBoardProc</prop>
+            <prop key="/diaryModifyBoard.do"> diaryModifyBoard</prop>
+            <prop key="/diaryModifyProcBoard.do"> diaryModifyBoardProc</prop>
+            <prop key="/diaryOneBoard.do"> diaryOneBoard</prop>
+            
+            
+         </props>
+      </property>
+   </bean>
+   
+   <bean id="getBoardList" class="com.spring.Bbiyak.controller.GetBoardListController"></bean>
+   <bean id="getBoard" class="com.spring.Bbiyak.controller.GetBoardController"></bean>
+   <bean id="insertBoard" class="com.spring.Bbiyak.controller.InsertBoardController"></bean>
+   <bean id="insertBoardProc" class="com.spring.Bbiyak.controller.InsertBoardProcController"></bean>
+   <bean id="LoginBoard" class="com.spring.Bbiyak.controller.LoginBoardController"></bean>
+   <bean id="boardDao" class="com.spring.boardex.impl.BoardDao" />
+   <bean id="LoginBoardProc" class="com.spring.Bbiyak.controller.LoginBoardProcController">
+      <constructor-arg ref="boardDao" /></bean>
+   <bean id="mainBoard" class="com.spring.Bbiyak.controller.MainBoardController"></bean>
+   <bean id="diaryBoard" class="com.spring.Bbiyak.controller.DiaryBoardController"></bean>
+   <bean id="diaryInsertBoard" class="com.spring.Bbiyak.controller.DiaryInsertBoardController"></bean>
+   <bean id="diaryInsertBoardProc" class="com.spring.Bbiyak.controller.DiaryInsertBoardProcController"></bean>
+   <bean id="diaryModifyBoard" class="com.spring.Bbiyak.controller.DiaryModifyBoardController"></bean>
+   <bean id="diaryModifyBoardProc" class="com.spring.Bbiyak.controller.DiaryModifyBoardProcController"></bean>
+   <bean id="diaryOneBoard" class="com.spring.Bbiyak.controller.DiaryOneBoardController"></bean>
+</beans>
